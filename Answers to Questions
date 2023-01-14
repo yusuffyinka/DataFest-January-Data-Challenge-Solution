@@ -1,0 +1,52 @@
+Question 1a.  Think about what could be going wrong with our calculation. 
+              Think about a better way to evaluate this data.
+Answer        The data contain more that 60 Outliers, 
+              it is right skewed which made the average to tilt towards the right
+
+
+Question 1b.  What metric would you report for this dataset?
+Answer        Median
+
+
+Question 1c.  What is its value?
+Answer        54
+
+
+Question 2a.  How many orders were shipped by Speedy Express in total?
+CODE          SELECT Sh.ShipperName, Count(O.OrderID)
+              FROM [Orders] O
+              JOIN [Shippers] Sh
+              ON O.ShipperID = Sh.ShipperID
+              WHERE Sh.ShipperName = "Speedy Express"
+              Group BY 1;
+
+Answer        54
+
+Question 2b.  What is the last name of the employee with the most orders?
+CODE          SELECT LastName, Max(OrderCount)
+              FROM 
+              (SELECT E.LastName, Count(O.OrderID) AS OrderCount
+              FROM [Orders] O
+              JOIN [Employees] E
+              ON O.EmployeeId = E.EmployeeID
+              Group by 1);
+              
+Answer        Peacock
+
+Question 2c.  What product was ordered the most by customers in Germany?
+CODE          SELECT ProductName, MAX(OrderCount)
+              FROM
+              (SELECT P.ProductName, Count(Ord.OrderID) AS OrderCount
+              FROM [Customers] C
+              JOIN [Orders] O
+              ON C.CustomerID = O.CustomerID
+              JOIN [OrderDetails] Ord
+              ON Ord.OrderID = O.OrderID
+              JOIN [Products] P
+              ON P.ProductID = Ord.ProductId
+              Where C.Country = "Germany"
+              Group by 1);
+             
+ Answer       Gorgonzola Telino
+
+

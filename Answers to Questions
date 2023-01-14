@@ -34,19 +34,18 @@ CODE          SELECT LastName, Max(OrderCount)
 Answer        Peacock
 
 Question 2c.  What product was ordered the most by customers in Germany?
-CODE          SELECT ProductName, MAX(OrderCount)
+CODE          SELECT ProductName, MAX(OrderedQty)
               FROM
-              (SELECT P.ProductName, Count(Ord.OrderID) AS OrderCount
+              (SELECT P.ProductName, SUM(Ord.Quantity) AS OrderedQty
               FROM [Customers] C
               JOIN [Orders] O
-              ON C.CustomerID = O.CustomerID
+              ON C.CustomerID = O.CustomerID AND C.Country = "Germany"
               JOIN [OrderDetails] Ord
               ON Ord.OrderID = O.OrderID
               JOIN [Products] P
               ON P.ProductID = Ord.ProductId
-              Where C.Country = "Germany"
               Group by 1);
              
- Answer       Gorgonzola Telino
+ Answer       Boston Crab Meat
 
 

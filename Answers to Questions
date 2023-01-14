@@ -2,15 +2,15 @@ Question 1a.  Think about what could be going wrong with our calculation.
               Think about a better way to evaluate this data.
 Answer        The data contain more that 60 Outliers, 
               it is right skewed which made the average to tilt towards the right
-
+=====================================================================================================================================================================
 
 Question 1b.  What metric would you report for this dataset?
 Answer        Median
-
+=====================================================================================================================================================================
 
 Question 1c.  What is its value?
 Answer        54
-
+=====================================================================================================================================================================
 
 Question 2a.  How many orders were shipped by Speedy Express in total?
 CODE          SELECT Sh.ShipperName, Count(O.OrderID)
@@ -21,6 +21,7 @@ CODE          SELECT Sh.ShipperName, Count(O.OrderID)
               Group BY 1;
 
 Answer        54
+=====================================================================================================================================================================
 
 Question 2b.  What is the last name of the employee with the most orders?
 CODE          SELECT LastName, Max(OrderCount)
@@ -32,6 +33,7 @@ CODE          SELECT LastName, Max(OrderCount)
               Group by 1);
               
 Answer        Peacock
+=====================================================================================================================================================================
 
 Question 2c.  What product was ordered the most by customers in Germany?
 CODE          SELECT ProductName, MAX(OrderedQty)
